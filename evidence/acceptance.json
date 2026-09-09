@@ -1,0 +1,473 @@
+{
+  "schema": "marimay-source-lint.acceptance/1",
+  "harness": {
+    "harness_version": "1",
+    "harness_sha256": "e7db6d3bcb596fd8d36a8af14068e83ed928a1c48f67211dfcd2c998a5e546ce",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "compiler": "/path/to/Marimay/marimay/build/release/mmay",
+    "compiler_sha256": "7da536ea73bfdec7809ee6369bc4839133fb99aff4adfc167635d47287c8b0be",
+    "engines": {
+      "vm": {
+        "command": [
+          "/path/to/Marimay/marimay/build/release/mmay",
+          "run",
+          ".",
+          "--allow-read",
+          "/path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance",
+          "--allow-write",
+          "/path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance",
+          "--max-heap-bytes",
+          "67108864",
+          "--"
+        ],
+        "executable_sha256": "7da536ea73bfdec7809ee6369bc4839133fb99aff4adfc167635d47287c8b0be"
+      },
+      "debug": {
+        "command": [
+          "/path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/app-debug"
+        ],
+        "executable_sha256": "e55c2ae3dccb0231b0fd92ae80a180526b8484310465dcf0fd03f7a1a1ab2a5f"
+      },
+      "release": {
+        "command": [
+          "/path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/app-release"
+        ],
+        "executable_sha256": "e271e6d6fe748d0fbc8ab983d9d42b6b54101f93182be4aedbade8df18989f88"
+      }
+    }
+  },
+  "sources": {
+    "main.my": "22ad562412287a599d99504d425ec0028537e28aabbd1056532479a5add3fd77",
+    "scanner.my": "5ee46d5f1f9b93649ecbd08f7d5bd4919ec40b0ed1c58964647d319456897832",
+    "scanner_test.my": "c591235ea47782bf5d464f9f37ba2bd65fd176f692a21a8556431ea2f719f58c",
+    "support.my": "1dbab2714a96ee9692e0ad239b855549bc16cfb8f34ac0841e2b90a5de1546e4"
+  },
+  "cases": [
+    {
+      "arguments": [
+        "--json",
+        "-"
+      ],
+      "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 0,
+      "stdout_sha256": "826c9f8dce42c7dec62aa0ff62ddd32adf55c150320ddc46141d6c4a56a67b64",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "-"
+      ],
+      "data_sha256": "c6e6c9f42d0be1d07cd25cfe6a00290e498aacb7205b65b9a5d66696f4931c22",
+      "status": 0,
+      "stdout_sha256": "826c9f8dce42c7dec62aa0ff62ddd32adf55c150320ddc46141d6c4a56a67b64",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "-"
+      ],
+      "data_sha256": "95a270259532d593028e96bbfc29ae38b51a92448c0d263fff45c968ba5059b5",
+      "status": 0,
+      "stdout_sha256": "826c9f8dce42c7dec62aa0ff62ddd32adf55c150320ddc46141d6c4a56a67b64",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "-"
+      ],
+      "data_sha256": "fb82d11d8807c2e989b48c1e3025188e70bbeabcc7a9868c438740f695f80349",
+      "status": 0,
+      "stdout_sha256": "826c9f8dce42c7dec62aa0ff62ddd32adf55c150320ddc46141d6c4a56a67b64",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "-"
+      ],
+      "data_sha256": "2545b8379d174b2265140373f2d9dde95a134075f6984ffdc7a93997c14cf41c",
+      "status": 0,
+      "stdout_sha256": "826c9f8dce42c7dec62aa0ff62ddd32adf55c150320ddc46141d6c4a56a67b64",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "-"
+      ],
+      "data_sha256": "6a40ef7c377b0f9b7eb49da2d504efd3cc22c96bb1242040a5a42ee15c8df72f",
+      "status": 0,
+      "stdout_sha256": "826c9f8dce42c7dec62aa0ff62ddd32adf55c150320ddc46141d6c4a56a67b64",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "-"
+      ],
+      "data_sha256": "8843980b2ebb963ac1f4526736a9e57250be753c3c851fe7cba893ed7b2ca178",
+      "status": 0,
+      "stdout_sha256": "826c9f8dce42c7dec62aa0ff62ddd32adf55c150320ddc46141d6c4a56a67b64",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "-"
+      ],
+      "data_sha256": "52ab750692e1c729c5b85561789f73a528646ccd20e12478ad610d9fcde2d64f",
+      "status": 0,
+      "stdout_sha256": "826c9f8dce42c7dec62aa0ff62ddd32adf55c150320ddc46141d6c4a56a67b64",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "-"
+      ],
+      "data_sha256": "ef565927465530d605399158f25c7dba0a5d54f42083c5a2a31fb44f7e77ba52",
+      "status": 1,
+      "stdout_sha256": "7adad99c5b69008be046505008bd9a5c6504cb6b99c56adc99f6c575e10bb4d4",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "-"
+      ],
+      "data_sha256": "ef565927465530d605399158f25c7dba0a5d54f42083c5a2a31fb44f7e77ba52",
+      "status": 1,
+      "stdout_sha256": "256a7474db98bf2b4bbf6bd015a6303f909966936a6b2c2824d0ccd10489cb72",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "-"
+      ],
+      "data_sha256": "8cba3282fe37fa6054ce64531ce17410a1404e2bc4afbf113824097037b1e498",
+      "status": 1,
+      "stdout_sha256": "c3da10c8391c78877b01790e6f9c50cef0911369ba7e08e25542a8a8da77ba73",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "-"
+      ],
+      "data_sha256": "9a8a9c19558489ed6d6634ac4e6588384648a187ab179c506be04b48f56380fa",
+      "status": 1,
+      "stdout_sha256": "be06f0c32ae74ed2849d05b5e4e2a7322c9a1cfa76aff7441a03ef137e35aa7f",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "-"
+      ],
+      "data_sha256": "5210169da49e2704f7b293b72a562517fc663f0bbb9aa8074655e1edae45216e",
+      "status": 1,
+      "stdout_sha256": "2ab3de05b3d656a252d7c83575efd9079e9df75d10dd653fa2e871023bbaa456",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "-"
+      ],
+      "data_sha256": "691863272645ee4586e80313f2609ff4042433f89113636f31d6de5f03ac6639",
+      "status": 1,
+      "stdout_sha256": "5ff1f3b80472bfa7f4e007d6f8b1843f18f58f243d997b591107b6a1970bb744",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "-",
+        "--max-findings",
+        "0"
+      ],
+      "data_sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+      "status": 0,
+      "stdout_sha256": "826c9f8dce42c7dec62aa0ff62ddd32adf55c150320ddc46141d6c4a56a67b64",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "-",
+        "--max-findings",
+        "1"
+      ],
+      "data_sha256": "b08cd849245462c575b44700d3b0ea5a4e3594639601c770d8447c769994dd17",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: -: Превышен лимит замечаний\n"
+    },
+    {
+      "arguments": [
+        "--json",
+        "-"
+      ],
+      "data_sha256": "900d6d91ba2c4e80c608b212d751cd20f15169395c1a0da92645785f7a9f45dd",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: -: Превышен лимит вложенности 256\n"
+    },
+    {
+      "arguments": [
+        "--json",
+        "-"
+      ],
+      "data_sha256": "8dd06b5ab6b594257e41b7d8dd440a4062eddc67fdab5c13b4dc300176896f6e",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: -: Недопустимый UTF-8 в байте 1\n"
+    },
+    {
+      "arguments": [
+        "--json",
+        "-"
+      ],
+      "data_sha256": "55781e4b7263bedc1ea8f8356ab4fde5a72a9a8f49bd239a7d727cca9ef7b1a0",
+      "status": 0,
+      "stdout_sha256": "826c9f8dce42c7dec62aa0ff62ddd32adf55c150320ddc46141d6c4a56a67b64",
+      "stderr": ""
+    },
+    {
+      "arguments": [],
+      "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: Нужен хотя бы один ФАЙЛ; см. --help\n"
+    },
+    {
+      "arguments": [
+        "--json",
+        "/path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/вход ü.txt",
+        "/path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/вход ü.txt"
+      ],
+      "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 1,
+      "stdout_sha256": "16bbb5ad0a451da6133fbe48643a7083f3cb5f6f6195af45878868b02d622b27",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "/path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/вход ü.txt",
+        "-",
+        "--max-findings",
+        "1"
+      ],
+      "data_sha256": "9b36b3820ac533b0e3e7da31b2346bbdbbc0becf437116553b0eaae24428a796",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: -: Превышен лимит замечаний\n"
+    },
+    {
+      "arguments": [
+        "--json",
+        "-",
+        "--max-input",
+        "1"
+      ],
+      "data_sha256": "fb8e20fc2e4c3f248c60c39bd652f3c1347298bb977b8b4d5903b85055620603",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: -: standard input exceeds 1-byte limit\n"
+    },
+    {
+      "arguments": [
+        "--json",
+        "-",
+        "--max-input",
+        "2"
+      ],
+      "data_sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+      "status": 0,
+      "stdout_sha256": "826c9f8dce42c7dec62aa0ff62ddd32adf55c150320ddc46141d6c4a56a67b64",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "-",
+        "--wat"
+      ],
+      "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: unknown option --wat at argument 2\n"
+    },
+    {
+      "arguments": [
+        "--json",
+        "/path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/вход ü.txt"
+      ],
+      "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 0,
+      "stdout_sha256": "be86d2a97058e69faddfcad89ec27d36eca18bfa6ba3484802e31e1e0ca7d96f",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "/path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/вход ü.txt",
+        "--max-input",
+        "1"
+      ],
+      "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: /path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/вход ü.txt: file exceeds 1-byte limit\n"
+    },
+    {
+      "arguments": [
+        "--json",
+        "-",
+        "--output",
+        "/path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/выход.txt"
+      ],
+      "data_sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+      "status": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": ""
+    },
+    {
+      "arguments": [
+        "--json",
+        "-",
+        "--output",
+        "/path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/выход.txt"
+      ],
+      "data_sha256": "a8100ae6aa1940d0b663bb31cd466142ebbdbd5187131b92d93818987832eb89",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: -: Недопустимый UTF-8 в байте 0\n"
+    },
+    {
+      "arguments": [
+        "--json",
+        "-",
+        "--max-output",
+        "0",
+        "--output",
+        "/path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/выход.txt"
+      ],
+      "data_sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: Превышен лимит вывода 0 байт\n"
+    },
+    {
+      "arguments": [
+        "--json",
+        "/path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/missing"
+      ],
+      "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: /path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/missing: filesystem path was not found\n"
+    },
+    {
+      "arguments": [
+        "--json",
+        "-",
+        "--max-input=-1"
+      ],
+      "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: --max-input: допустимо 0..1048576\n"
+    },
+    {
+      "arguments": [
+        "--json",
+        "-",
+        "--max-input=1048577"
+      ],
+      "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: --max-input: допустимо 0..1048576\n"
+    },
+    {
+      "arguments": [
+        "--json",
+        "-",
+        "--max-input=no"
+      ],
+      "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: --max-input: ожидается целое число\n"
+    },
+    {
+      "arguments": [
+        "--json",
+        "/path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/вход ü.txt"
+      ],
+      "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: /path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/вход ü.txt: fs.read capability denied for /path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/вход ü.txt\n"
+    },
+    {
+      "arguments": [
+        "--json",
+        "-",
+        "--output",
+        "/path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/выход.txt"
+      ],
+      "data_sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: fs.write capability denied for /path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/выход.txt\n"
+    },
+    {
+      "arguments": [
+        "--json",
+        "/path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/link"
+      ],
+      "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: /path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/link: symbolic links are not followed\n"
+    },
+    {
+      "arguments": [
+        "--json",
+        "-",
+        "--output",
+        "/path/to/Marimay/Marimay-Examples/marimay-source-lint/build/acceptance/link"
+      ],
+      "data_sha256": "73cb3858a687a8494ca3323053016282f3dad39d42cf62ca4e79dda2aac7d9ac",
+      "status": 2,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr": "marimay-source-lint: symbolic links are not followed\n"
+    }
+  ],
+  "closed_pipes": [
+    {
+      "engine": "vm",
+      "status": 2,
+      "stderr": "marimay-source-lint: standard stream flush failed\n"
+    },
+    {
+      "engine": "debug",
+      "status": 2,
+      "stderr": "marimay-source-lint: standard stream flush failed\n"
+    },
+    {
+      "engine": "release",
+      "status": 2,
+      "stderr": "marimay-source-lint: standard stream flush failed\n"
+    }
+  ],
+  "large_bytes": 524288,
+  "managed_heap_limit": 67108864,
+  "elapsed_seconds": 99.034156375
+}
