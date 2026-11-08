@@ -1,20 +1,21 @@
-# Бюджеты до измерений
+# Budgets defined before measurement
 
-macOS arm64, Release-компилятор, обычный desktop без принудительного сброса
-кэшей. Первый native запуск — сразу после build, без запуска кода при build.
+macOS arm64, Release compiler, ordinary desktop without forced cache eviction.
+The first native execution follows build immediately; build does not execute
+the application.
 
-- Малый первый/повторный native запуск ≤100 мс; mmay run ≤500 мс.
-- Повторный mmay test . --engine both с готовым кэшем ≤2 с.
-- Набор stateful-512k-v1: native ≤2 с, VM ≤20 с; процесс целиком.
-- Peak RSS: native ≤128 МиБ, VM ≤256 МиБ.
-- Управляемая куча при функциональной приёмке ограничена 64 МиБ.
+- Small first/repeated native execution ≤100 ms; `mmay run` ≤500 ms.
+- Repeated `mmay test . --engine both` with a ready cache ≤2 s.
+- `stateful-512k-v1`: native ≤2 s, VM ≤20 s, for the complete process.
+- Peak RSS: native ≤128 MiB, VM ≤256 MiB.
+- Functional acceptance uses a 64 MiB managed-heap limit.
 
-Delimited: 2048 строк из 8 полей по 31 ASCII-байту, по одному разделителю
-после первых семи полей и LF после последнего: ровно 524288 байт.
-Source-lint: 8192 строки по 64 байта: комментарий без TODO/FIXME, отступов
-табуляцией и концевых пробелов, завершённый LF: ровно 524288 байт.
-Второй размер — половина тех же строк для проверки масштабирования.
-Данные синтетические, генерируются harness; байты и SHA фиксируются.
+Delimited: 2048 rows of 8 fields containing 31 ASCII bytes each, a delimiter
+after the first seven fields and LF after the last: exactly 524288 bytes.
+Source-lint: 8192 lines of 64 bytes, each an LF-terminated comment without
+TODO/FIXME, indentation tabs or trailing whitespace: exactly 524288 bytes.
+The second size uses half the same lines to check scaling. The harness
+generates synthetic data and records its bytes and SHA.
 
-Это предварительные неизменяемые границы. Промах блокирует затронутую
-приёмку; функциональная готовность не означает прохождения бюджетов/Tier 1.
+These preliminary boundaries are fixed. A miss blocks affected acceptance;
+functional completion does not establish budget or Tier 1 acceptance.

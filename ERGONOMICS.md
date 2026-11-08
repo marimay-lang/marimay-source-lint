@@ -1,30 +1,32 @@
-# Найденные ограничения и решения
+# Findings, limitations and decisions
 
-| Наблюдение | Класс / владелец | Результат |
+| Observation | Class / owner | Outcome |
 |---|---|---|
-| `text.substring` создавал полный suffix перед копией поля; 512 КиБ CSV исчерпывали VM string pool 64 МиБ | Библиотека + typed MIR/text VM/native | Исправлено общей операцией диапазона; сохраняются обе проверки UTF-8, owned result и ошибки. Регрессия многократно вырезает короткие диапазоны из 512 КиБ. |
-| Сканер 428 блоков/674 регистров не проходил бюджет bytecode verifier | Toolchain / bytecode must-analysis | Исправлено RPO-начальной очередью. Бюджет, meet и invalidation не ослаблены. |
-| Первый запуск нового native-файла превышает 100 мс | Общий startup/host boundary; точная системная причина пока не установлена | Открытый блокер приёмки. Повторные образцы не заменяют первый; security/warmup обходов нет. |
-| Ввод целиком до 1 МиБ, JSON до 1 МиБ | Явная граница приложения и std APIs | Достаточно для указанного диалекта. Обработка произвольно больших файлов не заявляется. |
+| `text.substring` created a full suffix before copying a field; 512 KiB CSV exhausted the 64 MiB VM string pool | Library + typed MIR/text VM/native | Fixed with a shared range operation, retaining both UTF-8 checks, an owned result and errors. The regression repeatedly extracts short ranges from 512 KiB. |
+| A scanner with 428 blocks/674 registers exceeded the bytecode-verifier budget | Toolchain / bytecode must-analysis | Fixed with an RPO-initialized queue. Budget, meet and invalidation were not relaxed. |
+| First execution of a new native file exceeds 100 ms | Shared startup/host boundary; exact system cause unestablished | Open acceptance blocker. Repeated samples do not replace the first execution; no security or warmup workaround. |
+| Whole input up to 1 MiB, JSON up to 1 MiB | Explicit application and standard-API boundary | Sufficient for the defined dialect; arbitrary-size file processing is outside the claim. |
 
-CSV state machine и контексты source-lint различны; общий `support.my` содержит
-только CLI, лимиты, чтение/запись. Драйвер `mmay_acceptance.py` v1 заимствован
-без изменений. Нет ручной сериализации бизнес-record полей вместо `std/json`.
+The CSV state machine and source-lint contexts differ; shared `support.my`
+contains only CLI handling, limits and reading/writing. `mmay_acceptance.py` v1
+was reused unchanged. Business-record fields use `std/json` rather than a
+handwritten serializer. This record preserves historical findings, not a new
+verification of the current compiler.
 
-Дополнительные открытые наблюдения:
+Additional open observations:
 
-- Малый `mmay run`: 500–532 мс при бюджете 500 мс; повторный test both: 5,506 с
-  при бюджете 2 с. Следующая общая задача — профиль подготовки программы и
-  тестов, затем измерение того же workload. Уменьшать сканер или выносить его
-  алгоритм в C ради прохождения бюджета нельзя.
-- Литеральный match по `byte` ещё отвергается I0001 в checker scalar-match.
-  Минимальный пример: `fn main(): int { const ch: byte = 36;
-  return match ch { 36 => 1, _ => 0 }; }`. В приложении используются обычные
-  сравнения байтов и match по bool. Это открытое ограничение preview, не
-  исправление самого checker. Требуется явное решение в общей матрице CP42.
-- `Set.add` возвращает факт вставки; после contains факт намеренно игнорируется
-  через `const _`. Это существующий контракт D079, а не потеря ошибки: Result
-  обрабатывается через `mapError`/`?`.
+- Small `mmay run`: 500–532 ms against a 500 ms budget; repeated test-both:
+  5.506 s against 2 s. The next shared task is to profile program/test preparation
+  and then remeasure the same workload. Shrinking the scanner or moving its
+  algorithm to C to meet the budget is not an acceptable substitute.
+- A literal `match` on `byte` is still rejected with I0001 by checker scalar-match.
+  Minimal example: `fn main(): int { const ch: byte = 36;
+  return match ch { 36 => 1, _ => 0 }; }`. The application uses ordinary byte
+  comparisons and `match` on bool. This is a preview limitation, not a checker
+  fix; it needs an explicit decision in the shared CP42 matrix.
+- `Set.add` reports whether insertion occurred. After `contains`, this fact is
+  intentionally discarded with `const _`. This retains D079: the Result error
+  is handled with `mapError`/`?`.
 
-Линтер намеренно ограничен шестью текстовыми правилами. Полная грамматика,
-exhaustiveness/type checking и auto-fix не входят в контракт утилиты.
+The linter is deliberately bounded to six textual rules. Full grammar,
+exhaustiveness/type checking and automatic fixes are outside its contract.

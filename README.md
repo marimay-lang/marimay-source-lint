@@ -1,86 +1,49 @@
 # marimay-source-lint
 
-Небольшой лексический проверяющий инструмент для исходников Marimay.
+![A lexical source checker — a Marimay learning project](.github/banner.svg)
 
-Нужен установленный `mmay` с исправлениями диапазонов текста и порядка
-верификации из текущего блока CLI0. Ревизия и хеш проверенного компилятора
-указаны в `VERIFICATION.md`. Зависимостей вне встроенной стандартной библиотеки нет.
+> **Personal learning project.** This open-source MIT project is part of
+> [Marimay](https://github.com/marimay-lang/marimay), my hobby programming-language project.
+> I maintain it in my spare time to learn by building. APIs and tooling may
+> change, and progress may be intermittent.
+
+A lexical checker for trailing whitespace, indentation tabs, TODO/FIXME comments, unfinished lexical contexts, missing final LF and lone CR characters.
+
+**Status:** Experimental Marimay learning application. Process acceptance scripts exercise
+VM and native Debug/Release execution. Full platform and performance acceptance
+remain in progress; existing reports retain their recorded revisions and limits.
+
+## Run and verify
 
 ```sh
+mmay run . -- --help
+mmay run . -- --json - < fixtures/sample.my.txt
+mmay run . --allow-read fixtures -- fixtures/clean.my.txt
 mmay fmt . --check
 mmay check .
 mmay test . --engine both
-mmay run . -- --help
+MMAY="$(command -v mmay)" python3 tools/acceptance.py
 mkdir -p build
 mmay build . --release --output build/app
 ```
 
-```sh
-mmay run . -- --json - < fixtures/sample.my.txt
-mmay run . --allow-read fixtures -- fixtures/sample.my.txt
-build/app --json - < fixtures/clean.my.txt
-```
+Install a compatible `mmay` and use its matching standard library. Application
+arguments follow `--` in `mmay run`. Filesystem and environment access requires
+explicit grants; native grants are selected at build time.
 
-Правила:
+The scanner tracks literals, nested block comments and interpolation. Findings
+include UTF-8 byte spans and one-based line/Unicode-scalar columns. It provides
+lexical checks without type checking or automatic edits. Input/output and
+finding counts are bounded; `-` selects stdin and `--json` selects JSON output.
 
-| Код | Проверка |
-|---|---|
-| L001 | Пробелы или табуляция в конце строки вне литерала |
-| L002 | Табуляция в отступе вне литерала |
-| L003 | Целые слова TODO/FIXME только в комментариях |
-| L004 | Незакрытый литерал/блок-комментарий/интерполяция; одиночная `}` в тексте интерполяции |
-| L005 | Отсутствующий конечный LF у непустого файла |
-| L006 | Одиночный CR вне литерала |
+Python generates synthetic inputs and drives independent process checks;
+application logic is written in Marimay. `MMAY=/absolute/path/to/mmay` selects
+the compiler for Python drivers. `python3 tools/measure.py` runs the existing
+measurement harness and writes local reports under `build/`.
 
-Учитываются обычные, raw, byte и интерполированные строки, rune-литералы,
-экранирование, вложенные блок-комментарии и выражения внутри интерполяции.
-Пробелы и TODO в содержимом литерала не дают ложных замечаний; комментарии
-проверяются на пробелы. CRLF принят. Проверка не строит AST, не проверяет
-типы, все escape-последовательности или полную грамматику и не исправляет код.
+See [`BUDGETS.md`](BUDGETS.md), [`ERGONOMICS.md`](ERGONOMICS.md), [`VERIFICATION.md`](VERIFICATION.md) for project-specific budgets,
+findings and historical verification details.
 
-По умолчанию вывод `файл:строка:столбец: код: сообщение`. `--json` возвращает
-`{version:1,count,files:[{path,findings:[{code,message,startByte,endByte,line,column}]}]}`.
-Байтовые диапазоны полуоткрытые и начинаются с нуля, строки и столбцы — с единицы.
-Столбцы считают Unicode scalars, табуляция считается одним символом.
-Пустой span на EOF допустим. Замечания упорядочены по offset со стабильным
-порядком при равенстве; файлы идут в порядке аргументов. Точное повторение
-аргумента пропускается, разные написания одного пути не объединяются.
-При EOF незавершённое состояние указывает на внешний незакрытый литерал.
+## License
 
-`--max-findings` — общий предел для всех файлов (по умолчанию и максимум 1000).
-При превышении операция целиком завершается ошибкой. Ноль допускает только
-чистые входы. Стек контекстов, комментарии и скобки интерполяции ограничены 256;
-корневой контекст также занимает слот стека. Вход каждого файла — корректный UTF-8.
-
-Коды завершения: **0** — замечаний нет, **1** — замечания найдены,
-**2** — вызов/ввод/вывод/ресурсная ошибка. Запись отчёта с замечаниями успешна,
-хотя статус равен 1. Отчёт не создаётся частично при ошибке последующего файла.
-
-Общие параметры: `--max-input` и `--max-output` от 0 до 1048576 байт;
-по умолчанию 1 МиБ. Вход читается полностью до EOF с проверкой предела;
-это ограниченный по размеру инструмент, а не потоковая обработка файлов
-произвольного размера. `-` означает stdin/stdout. `--output/-o ФАЙЛ`
-публикует полностью подготовленные байты атомарной заменой. При ошибке
-разбора, лимите или отказе записи исходный выходной файл сохраняется.
-Символические ссылки не обходятся; файловые операции требуют явных разрешений:
-
-```sh
-mmay run . --allow-read . --allow-write . -- --help
-mmay build . --release --allow-read . --allow-write . --output build/app-files
-```
-
-Разрешения для native задаются при сборке. Само приложение не включает
-доступ к произвольным файлам. Перенаправления shell работают независимо
-от файловых разрешений приложения.
-
-```sh
-python3 tools/acceptance.py
-python3 tools/measure.py
-```
-
-Первый сценарий строит Debug/Release и сравнивает точные байты, статусы и
-файловые эффекты с VM по собственным ожидаемым результатам. Второй измеряет
-неизменяемые наборы и бюджеты из `BUDGETS.md`. `MMAY` выбирает компилятор.
-Результаты находятся в `build/`; хеши, проверенная платформа и ограничения
-приёмки зафиксированы в `VERIFICATION.md`. Python используется только для
-запуска, генерации синтетических тестов и независимой проверки результата.
+[MIT](LICENSE). Existing copyright attribution is retained.
