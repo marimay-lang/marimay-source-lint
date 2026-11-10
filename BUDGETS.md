@@ -4,7 +4,13 @@ macOS arm64, Release compiler, ordinary desktop without forced cache eviction.
 The first native execution follows build immediately; build does not execute
 the application.
 
-- Small first/repeated native execution ≤100 ms; `mmay run` ≤500 ms.
+- Small **repeated** native execution ≤100 ms (decision D125). The first
+  execution is published next to a same-host trivial-binary baseline instead of
+  being budgeted: a fresh Mach-O image pays about 240 ms of page-in and
+  signature validation before `main`, so a first-run ceiling measures the
+  platform, not this program. The re-measurement that produced this rule is in
+  the CP42 startup re-check evidence (2026-11-11).
+- `mmay run` (VM) ≤500 ms.
 - Repeated `mmay test . --engine both` with a ready cache ≤2 s.
 - `stateful-512k-v1`: native ≤2 s, VM ≤20 s, for the complete process.
 - Peak RSS: native ≤128 MiB, VM ≤256 MiB.
